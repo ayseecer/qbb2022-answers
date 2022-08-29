@@ -42,7 +42,18 @@
 Question 4c: I would replace AFR would the other population names.
 
 Question 5b: cut -f 1-9,13 random_snippet.vcf > HG00100.vcf
+Question 5c: grep -v "#" HG00100.vcf | cut -f 10 | sort | uniq -c
+Run:
+9514 0|0
+ 127 0|1
+ 178 1|0
+ 181 1|1
+Question 5d:
+grep -v "#" HG00100.vcf | cut -f 8 | cut -f4 -d";" | grep "AF=1" | wc -l
+Run: 15
+Question 5e: 1 time
 
+grep -v "#" HG00100.vcf | cut -f 8 | cut -f7 -d";" | grep "AFR_AF=1" | wc -l
 
    
   

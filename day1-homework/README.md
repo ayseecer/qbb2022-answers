@@ -55,11 +55,21 @@ Considering  T
   10 A
   29 C
    8 G
-   
 Answer:
 Considering  C
   12 A
   11 G
   39 T
+
+Exercise 3: 
+
+2 errors, one is tab delimited, other is sorting
+
+awk 'BEGIN{OFS="\t"} {print}' input_file
+
+awk '/^#/{next} BEGIN{OFS="\t"} {print $1,$2-1, $2}' $1 | sort -k1,1 -k2,2n > variants.bed
+sort -k1,1 -k2,2n ~/data/bed_files/genes.bed > genes.sorted.bed
+bedtools closest -a variants.bed -b genes.sorted.bed
+
 
   

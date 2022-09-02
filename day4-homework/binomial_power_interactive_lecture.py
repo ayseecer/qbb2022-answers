@@ -64,7 +64,7 @@ def compute_power(n_rejected_correctly, n_tests):
     power = n_rejected_correctly / n_tests
     return(power)
 
-def run_experiment(prob_heads, n_toss, n_iters = 100, seed = 389, correct_the_pvalues = False):
+def run_experiment(prob_heads, n_toss, n_iters = 100, seed = 389, correct_the_pvalues = True):
     '''
     Input: prob_heads, a float, the probability of a simulated coin toss returning heads
            n_toss, an integer, the number of coin tosses to simulate
@@ -111,5 +111,5 @@ sns.heatmap(power_mat, vmin=0, vmax=1, xticklabels='auto', yticklabels='auto', a
 ax.set_xlabel("n_tosses")
 ax.set_ylabel("prob_heads")
 ax.set_title("Heatmap to Visualize Power")
-fig.savefig("heatmap.png" )
+fig.savefig("heatmap_corrected.png" )
 #plt.show()

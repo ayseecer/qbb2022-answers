@@ -35,3 +35,5 @@ print(np.unique(vals_per_gene["super_pop"]))
 pops = np.unique(vals_per_gene["super_pop"])
 
 for pop in pops np.where(vals_per_gene["super_pop"]==pop)
+
+Later I used three for-loops and relevant edits in the script to create the three colored plots (ex3_a.png, ex3_b.png, and ex3_c.png) found in day3-homework-genfromtxt.py. 

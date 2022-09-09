@@ -1,0 +1,3 @@
+# Feedback day2-lunch
+
+Overall this looks good. There were just a couple of small issues. The logic for ensuring the correct number of columns is faulty. I think you mean `if not ((fieldN >= 3 and fieldN <= 9) or fieldN == 12)`. While you check the length of fields[10], you also need to look at the lengths of fields[8] and fields[11]. Also, before testing the length of these fields, you need to make sure that column exists (a bed3 file would be all malformed lines in your current code because of  the assert statement). Otherwise, this code suggests a good amount of comfort with this level of python. Keep up the good work!

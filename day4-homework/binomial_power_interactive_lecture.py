@@ -64,7 +64,7 @@ def compute_power(n_rejected_correctly, n_tests):
     power = n_rejected_correctly / n_tests
     return(power)
 
-def run_experiment(prob_heads, n_toss, n_iters = 100, seed = 389, correct_the_pvalues = True):
+def run_experiment(prob_heads, n_toss, n_iters = 100, seed = 389, correct_the_pvalues = True): #the corrected heatmap uses true, the uncorrected heatmap uses false
     '''
     Input: prob_heads, a float, the probability of a simulated coin toss returning heads
            n_toss, an integer, the number of coin tosses to simulate

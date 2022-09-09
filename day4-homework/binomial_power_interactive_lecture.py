@@ -111,5 +111,5 @@ sns.heatmap(power_mat, vmin=0, vmax=1, xticklabels='auto', yticklabels='auto', a
 ax.set_xlabel("n_tosses")
 ax.set_ylabel("prob_heads")
 ax.set_title("Heatmap to Visualize Power")
-fig.savefig("heatmap_corrected.png" )
-#plt.show()
+#fig.savefig("heatmap_corrected.png" )
+plt.show()

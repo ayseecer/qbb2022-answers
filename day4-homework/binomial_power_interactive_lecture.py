@@ -106,7 +106,7 @@ print(power_mat)
 
 fig, ax = plt.subplots()
 sns.color_palette("rocket", as_cmap=True)
-sns.heatmap(power_mat, vmin=0, vmax=1, xticklabels='auto', yticklabels='auto', ax=None,)
+sns.heatmap(power_mat, vmin=0, vmax=1, xticklabels='n_toss', yticklabels='prob_heads', ax=None,)
 
 ax.set_xlabel("n_tosses")
 ax.set_ylabel("prob_heads")

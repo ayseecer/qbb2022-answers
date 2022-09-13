@@ -19,24 +19,44 @@ less than 5% of the genome seems to not be sequenced (has 0x coverage) and the P
 
 The Poisson distribution got less accurate compared to the 5X coverage Poisson distribution. The number of bases with 0x coverage is 0, and the Poisson predicts that pretty well.
 
-Question 2. De novo assembly
+#######Question 2. De novo assembly: using the data described in the Data section above, assemble the reads using Spades.
 
-Using the data described in the Data section above, assemble the reads using Spades.
+######Question 2.1. How many contigs were produced? [Hint: try grep -c '>' contigs.fasta]
 
-Question 2.1. How many contigs were produced? [Hint: try grep -c '>' contigs.fasta]
+Ran this bash command to get the answer 4 contigs were produced:
+[~/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm $] grep -c '>' contigs.fasta
+4
 
-Question 2.2. What is the total length of the contigs? [Hint: try samtools faidx, plus a short script if necessary]
+######Question 2.2. What is the total length of the contigs? [Hint: try samtools faidx, plus a short script if necessary]
 
-Question 2.3. What is the size of your largest contig? [Hint: check samtools faidx plus sort -n]
+Ran this bash command to get the output file of contigs.fasta.fai which gave me the lengths of each contig in column 2: samtools faidx contigs.fasta
 
-Question 2.4. What is the contig N50 size? [Hint: Write a short script if necessary]
+NODE_1_length_105830_cov_20.649193      105830  36      60      61
+NODE_2_length_47860_cov_20.367392       47860   107665  60      61
+NODE_3_length_41351_cov_20.528098       41351   156358  60      61
+NODE_4_length_39426_cov_20.336388       39426   198434  60      61
 
+######Question 2.3. What is the size of your largest contig? [Hint: check samtools faidx plus sort -n]
 
-Question 3. Whole Genome Alignment
+The largest contig is the first one (NODE_1_length_105830_cov_20.649193) with a size of 105830 bases.
 
-Use MUMmer for whole genome alignment.
+######Question 2.4. What is the contig N50 size? [Hint: Write a short script if necessary]
+
+Ran this bash command to get the output file of ref.fa.fai which gave me the length of the reference genome:samtools faidx ref.fa
+Halomonas       233806  11      70      71
+
+To get the N50 I found that the second largest contig length would surpass the halfway mark of the length of the reference genome which is 233806/2 = 116903, so N50 is 47860. 
+
+######Question 3. Whole Genome Alignment (Use MUMmer for whole genome alignment).
 
 Question 3.1. What is the average identify of your assembly compared to the reference? [Hint: try dnadiff]
+
+Ran this bash command to get an error: dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta
+
+dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta
+Illegal division by zero at /Users/cmdb/miniconda3/bin/dnadiff line 12.
+BEGIN failed--compilation aborted at /Users/cmdb/miniconda3/bin/dnadiff line 12
+
 
 Question 3.2. What is the length of the longest alignment [Hint: try nucmer and show-coords]
 

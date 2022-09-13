@@ -47,21 +47,23 @@ Halomonas       233806  11      70      71
 
 To get the N50 I found that the second largest contig length would surpass the halfway mark of the length of the reference genome which is 233806/2 = 116903, so N50 is 47860. 
 
-######Question 3. Whole Genome Alignment (Use MUMmer for whole genome alignment).
+######Question 3.1. What is the average identify of your assembly compared to the reference? [Hint: try dnadiff]
 
-Question 3.1. What is the average identify of your assembly compared to the reference? [Hint: try dnadiff]
+Ran this bash command to get these files: dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta
 
-Ran this bash command to get an error: dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta
+5-Darwin/bin/asm/contigs.fasta
+Building alignments
+Filtering alignments
+Extracting alignment coordinates
+Analyzing SNPs
+Extracting alignment breakpoints
+Generating report file
 
-dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta
-Illegal division by zero at /Users/cmdb/miniconda3/bin/dnadiff line 12.
-BEGIN failed--compilation aborted at /Users/cmdb/miniconda3/bin/dnadiff line 12
+When I checked my week1-homework directory, I saw the additional out.1coords, out.1delta, out.delta, outmcoords, out.mdelta, out.qdiff, out.rdiff, out.report, and out.snps. When I did less -S on out.report, I saw that the average identity of my assembly compared to the reference was 99.9955.
 
-
-Question 3.2. What is the length of the longest alignment [Hint: try nucmer and show-coords]
+######Question 3.2. What is the length of the longest alignment [Hint: try nucmer and show-coords]
 
 Question 3.3. How many insertions and deletions are in the assembly? [Hint: try dnadiff]
-
 
 Question 4. Decoding the insertion
 

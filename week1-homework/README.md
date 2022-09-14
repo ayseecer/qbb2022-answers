@@ -19,17 +19,17 @@ less than 5% of the genome seems to not be sequenced (has 0x coverage) and the P
 
 The Poisson distribution got less accurate compared to the 5X coverage Poisson distribution. The number of bases with 0x coverage is 0, and the Poisson predicts that pretty well.
 
-#######Question 2. De novo assembly: using the data described in the Data section above, assemble the reads using Spades.
+######Question 2. De novo assembly: using the data described in the Data section above, assemble the reads using Spades.
 
 ######Question 2.1. How many contigs were produced? [Hint: try grep -c '>' contigs.fasta]
 
 Ran this bash command to get the answer 4 contigs were produced:
-[~/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm $] grep -c '>' contigs.fasta
+``[~/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm $] grep -c '>' contigs.fasta``
 4
 
 ######Question 2.2. What is the total length of the contigs? [Hint: try samtools faidx, plus a short script if necessary]
 
-Ran this bash command to get the output file of contigs.fasta.fai which gave me the lengths of each contig in column 2: samtools faidx contigs.fasta
+Ran this bash command to get the output file of contigs.fasta.fai which gave me the lengths of each contig in column 2: `samtools faidx contigs.fasta`
 
 NODE_1_length_105830_cov_20.649193      105830  36      60      61
 NODE_2_length_47860_cov_20.367392       47860   107665  60      61
@@ -42,14 +42,14 @@ The largest contig is the first one (NODE_1_length_105830_cov_20.649193) with a 
 
 ######Question 2.4. What is the contig N50 size? [Hint: Write a short script if necessary]
 
-Ran this bash command to get the output file of ref.fa.fai which gave me the length of the reference genome:samtools faidx ref.fa
+Ran this bash command to get the output file of ref.fa.fai which gave me the length of the reference genome:`samtools faidx ref.fa`
 Halomonas       233806  11      70      71
 
 To get the N50 I found that the second largest contig length would surpass the halfway mark of the length of the reference genome which is 233806/2 = 116903, so N50 is 47860. 
 
 ######Question 3.1. What is the average identify of your assembly compared to the reference? [Hint: try dnadiff]
 
-Ran this bash command to get these files: dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta
+Ran this bash command to get these files: `dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta`
 
 Which gave me the outputs...
    out.report  - Summary of alignments, differences and SNPs
@@ -91,7 +91,7 @@ So, the longest alingment would be 105830 bases long.
 
 (Note: ls -lt gives time created, ls -lh gives the file size in ways "humans" can understand) 
 
-dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/out.snps
+`dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/out.snps`
 
 I made a directory using `mkdir dnadiff_outputs` and moved all files starting with "out" (which are the outputs of dnadiff) into the directory using `mv out.* dnadiff_outputs` for organization purposes.
 

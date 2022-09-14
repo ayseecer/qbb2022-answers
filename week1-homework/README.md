@@ -24,8 +24,8 @@ The Poisson distribution got less accurate compared to the 5X coverage Poisson d
 ######Question 2.1. How many contigs were produced? [Hint: try grep -c '>' contigs.fasta]
 
 Ran this bash command to get the answer 4 contigs were produced:
-``[~/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm $] grep -c '>' contigs.fasta``
-4
+`[~/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm $] grep -c '>' contigs.fasta`
+
 
 ######Question 2.2. What is the total length of the contigs? [Hint: try samtools faidx, plus a short script if necessary]
 

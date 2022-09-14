@@ -51,21 +51,53 @@ To get the N50 I found that the second largest contig length would surpass the h
 
 Ran this bash command to get these files: dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta
 
-5-Darwin/bin/asm/contigs.fasta
-Building alignments
-Filtering alignments
-Extracting alignment coordinates
-Analyzing SNPs
-Extracting alignment breakpoints
-Generating report file
+Which gave me the outputs...
+   out.report  - Summary of alignments, differences and SNPs
+   out.delta   - Standard nucmer alignment output
+   out.1delta  - 1-to-1 alignment from delta-filter -1
+   out.mdelta  - M-to-M alignment from delta-filter -m
+   out.1coords - 1-to-1 coordinates from show-coords -THrcl .1delta
+   out.mcoords - M-to-M coordinates from show-coords -THrcl .mdelta
+   out.snps    - SNPs from show-snps -rlTHC .1delta
+   out.rdiff   - Classified ref breakpoints from show-diff -rH .mdelta
+   out.qdiff   - Classified qry breakpoints from show-diff -qH .mdelta
+   out.unref   - Unaligned reference sequence IDs and lengths
+   out.unqry   - Unaligned query sequence IDs and lengths
 
 When I checked my week1-homework directory, I saw the additional out.1coords, out.1delta, out.delta, outmcoords, out.mdelta, out.qdiff, out.rdiff, out.report, and out.snps. When I did less -S on out.report, I saw that the average identity of my assembly compared to the reference was 99.9955.
 
 ######Question 3.2. What is the length of the longest alignment [Hint: try nucmer and show-coords]
 
-Question 3.3. How many insertions and deletions are in the assembly? [Hint: try dnadiff]
+Ran this bash command to get the file out.delta:
+`nucmer /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta`
 
-Question 4. Decoding the insertion
+This step produces out.delta. How can we make it obvious that `out.delta` was literally the OUTPUT of `nucmer .fa .fasta` ? 
+`mkdir nucmer_out`
+`mv out.delta nucmer_out`
+
+(show-coords displays a summary of the coordinates, percent identity, etc. of the alignment regions) 
+Then you want to use show-coords to do... 
+`show-coords /Users/cmdb/qbb2022-answers/week1-homework/nucmer_out/out.delta > show_coords_out.out` (do cat show_coords_out.out to see)
+
+The output format of out-coords has:
+[LEN 1] length of the alignment region in the reference sequence 
+[LEN 2] length of the alignment region in the query sequence
+
+which happen to be the same for all (meaning no insertions or deletions to change the alignment length etc.)
+
+So, the longest alingment would be 105830 bases long.
+
+######Question 3.3. How many insertions and deletions are in the assembly? [Hint: try dnadiff]
+
+(Note: ls -lt gives time created, ls -lh gives the file size in ways "humans" can understand) 
+
+dnadiff /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/out.snps
+
+I made a directory using `mkdir dnadiff_outputs` and moved all files starting with "out" (which are the outputs of dnadiff) into the directory using `mv out.* dnadiff_outputs` for organization purposes.
+
+Then I checked the out.reports file since it was the most general output of dnadiff, and found that 710 bases (0.3028%) of the assembly (query) was unaligned, which refers to insertions and deletions.
+
+######Question 4. Decoding the insertion
 
 Question 4.1. What is the position of the insertion in your assembly? Provide the corresponding position in the reference. [Hint: try show-coords]
 

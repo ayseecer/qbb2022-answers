@@ -71,13 +71,12 @@ When I checked my week1-homework directory, I saw the additional out.1coords, ou
 Ran this bash command to get the file out.delta:
 `nucmer /Users/cmdb/qbb2022-answers/week1-homework/asm/ref.fa /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta`
 
-This step produces out.delta. How can we make it obvious that `out.delta` was literally the OUTPUT of `nucmer .fa .fasta` ? 
 `mkdir nucmer_out`
 `mv out.delta nucmer_out`
 
 (show-coords displays a summary of the coordinates, percent identity, etc. of the alignment regions) 
 Then you want to use show-coords to do... 
-`show-coords /Users/cmdb/qbb2022-answers/week1-homework/nucmer_out/out.delta > show_coords_out.out` (do cat show_coords_out.out to see)
+`show-coords /Users/cmdb/qbb2022-answers/week1-homework/nucmer_out/out.delta > show_coords_out.out` 
 
 The output format of out-coords has:
 [LEN 1] length of the alignment region in the reference sequence 
@@ -99,10 +98,43 @@ Then I checked the out.reports file since it was the most general output of dnad
 
 ######Question 4. Decoding the insertion
 
-Question 4.1. What is the position of the insertion in your assembly? Provide the corresponding position in the reference. [Hint: try show-coords]
+######Question 4.1. What is the position of the insertion in your assembly? Provide the corresponding position in the reference. [Hint: try show-coords]
 
-Question 4.2. How long is the novel insertion? [Hint: try show-coords]
+[S1]: Start of the alignment region in the reference sequence 
+[E1]: End of the alignment region in the reference sequence 
+[S2]: Start of the alignment region in the query sequence 
+[E2]: End of the alignment region in the query sequence 
 
-Question 4.3. What is the DNA sequence of the encoded message? [Hint: try samtools faidx to extract the insertion]
+Knowing from googling the manual that the starts and ends of the alignment regions can be found in the show-coords output (show_coords_out.out), I did `less -S show_coords_out.out` to see the [S1], [E1], [S2], [E2] positions.
 
-Question 4.4. What is the secret message? [Hint: Run the provided script dna-decode.py to decode the string from 4.3.]
+Looking at the show-coords output (show_coords_out.out), I saw that in NODE_1 and NODE_3 there were two alignments to the reference, which suggestted something could be inserted for it to not have one single alignment. In NODE_1, the second alingment (93103 to 93201) was within the first alignment (1 to 105830), which did not look like an insertion, but perhaps a transversion. However, in NODE_3, the two alignments are from 1 to 26787 and 27498 to 41351, which align to the reference genome from 3 to 26789 and 26788 to 40641 which suggests the insertion is at the 26788th position of the reference genome. The insertion position in the assembly should be from 26788 (start position) to 27497 (end position).
+
+######Question 4.2. How long is the novel insertion? [Hint: try show-coords]
+
+The length of the novel insertion is 27497 - 26788 = 709 bases long. (which matches the 710 bases output from Question 3.3)
+
+######Question 4.3. What is the DNA sequence of the encoded message? [Hint: try samtools faidx to extract the insertion]
+
+I ran the command `samtools faidx /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta NODE_3_length_41351_cov_20.528098:26788-27497` to get the output below, which is the insertion.
+
+>NODE_3_length_41351_cov_20.528098:26788-27497
+CATACAATGCGTATTGTAGTATGGCCTTACGGGAGGGCAGACGGCAAAGAGTGATCACGT
+TCTATCGGATGCAAGGCACCGCTTTATCCATTAGCCTCTTATTGGAGGAGGGCATGGCAT
+TCATACCCAATGGCTCAATTCTTTTACTACAACATTGATAACTTATCCAAGTACTCTACG
+ACCAACCTGCAGAACGGCCCACCGGCCTAACGGCATACCTCACAACTACCCTGCTAAGGC
+GAGCACTCCAGCCAAGCAAGACCACATCCACCCAAGCCCACCTCATCGCCTCAGCCAATA
+GCGCTCAGACAAAAGGAACTTATTATTAACTGAAACGCTGTACTGCGGTAAGTCCTCAAC
+GCCGACCAAACGAAACCAGCAGCGTAGTCCTATCGGACTCGCTTGCACACATAACACATG
+CTTGTAGTCTTGCACGACCCCAGGCGGACATGAGTTTCTGCTGGGCGGCGAGGAGTCGAA
+GCTGCGGGCATTCCTTTCCGAAAACATGAATTACTGCGGGTATGTCCGACCTCAAACATT
+CGTACCTGAGCATATTGCTCAAGTGAGCCAGTCGGCAATTCATATCCGAAAACATGACTG
+TCTTGCATAAGGCCTCTCTTACGAGCTGAGTGCACGAACCACGGAACAGCTTAGTCACTT
+AGAAGAGTACTCTATTCGGGACTTGAAGTACGCGTGCAATCGGGAACTAGTG
+
+######Question 4.4. What is the secret message? [Hint: Run the provided script dna-decode.py to decode the string from 4.3.]
+
+I ran the code `samtools faidx /Users/cmdb/qbb2022-answers/week1-homework/SPAdes-3.15.5-Darwin/bin/asm/contigs.fasta NODE_3_length_41351_cov_20.528098:26788-27497 > novel_insertion.fa` to save the novel insertion into another file and then moved it to asm (where the dna-decode.py code is) using `mv ~/qbb2022-answers/week1-homework/novel_insertion.fa .`
+
+Then I ran the dna-decode script `python dna-decode.py --decode --input novel_insertion.fa` and got the message!
+
+The decoded message :  Congratulations to the 2022 CMDB @ JHU class!  Keep on looking for little green aliens..

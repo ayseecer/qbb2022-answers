@@ -18,5 +18,5 @@ Question 6: `vcfallelicprimitives -k -g filtered_var.vcf > decomposed_filtered_v
 
 Question 7: `snpEff ann R64-1-1.99 decomposed_filtered_var.vcf > ann_dec_filt_var.vcf`
 
-Question 8: 
+Question 8: The python script is plot.py and is uploaded on github :)
 

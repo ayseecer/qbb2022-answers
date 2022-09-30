@@ -56,6 +56,7 @@ axs[1,1].set_title("effect of alleles")
 axs[1,1].set_xlabel("effect of allele")
 axs[1,1].set_ylabel("count")
 
+plt.tight_layout()
 plt.savefig("week3_multi_panel_plot.png")
 
 

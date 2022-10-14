@@ -10,6 +10,9 @@ total_snps = 0
 log_p_values_for_plot = []
 log_p_values_for_plot_filtered = []
 
+highest_seen = 0
+largest_position = ("chrom", "position")
+
 for i, line in enumerate(open(f"{drug}_gwas_results.assoc.linear")):
     fields = line.strip().split()
     if i == 0:
@@ -30,6 +33,13 @@ for i, line in enumerate(open(f"{drug}_gwas_results.assoc.linear")):
         log_p_values_for_plot_filtered.append('red')
     else:
         log_p_values_for_plot_filtered.append('black')
+        
+    if log_p_values > highest_seen:
+        highest_seen = log_p_values
+        largest_position = (chrom, position)
+print(highest_seen)
+print(largest_position)
+        
     
 x_count = [x for x in range(total_snps)]
 # change x location for x axis to snp count

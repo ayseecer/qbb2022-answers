@@ -47,4 +47,4 @@ Motif Identification:
 
 Part 1: scanned my motifs using the command `tomtom combined.meme /Users/cmdb/Downloads/motif_databases/MOUSE/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme`
 
-Part 2: opened my tomtom.html file and saw that I got 108 matches.
+Part 2: I did `grep SOX2 tomtom.tsv > SOX2.tsv` and `grep KLF4 tomtom.tsv > KLF4.tsv` and saw 2 and 2 matches.

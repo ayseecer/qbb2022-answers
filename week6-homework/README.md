@@ -8,3 +8,8 @@ Q2: What constitutes the majority of invalid 3C pairs? What does it actually mea
 
 Part 2: ran this command into bash.
 `python load_data.py hic_results/matrix/dCTCF/iced/6400/dCTCF_ontarget_6400_iced.matrix hic_results/matrix/ddCTCF/iced/6400/ddCTCF_ontarget_6400_iced.matrix hic_results/matrix/dCTCF/raw/6400/dCTCF_ontarget_6400_abs.bed heatmap`
+
+script:
+python heatmap.py hic_results/matrix/dCTCF/iced/6400/dCTCF_ontarget_6400_iced.matrix hic_results/matrix/ddCTCF/iced/6400/ddCTCF_ontarget_6400_iced.matrix hic_results/matrix/dCTCF/raw/6400/dCTCF_ontarget_6400_abs.bed /Users/cmdb/qbb2022-answers/week6-homework/analysis/hic_results/heatmap1.pdf
+
+

@@ -7,8 +7,9 @@ import scanpy as sc
 adata = sc.read_10x_h5("neuron_10k_v3_filtered_feature_bc_matrix.h5")
 # Make variable names (in this case the genes) unique
 adata.var_names_make_unique()
-filtered_data = sc.pp.recipe_zheng17(adata, n_top_genes=1000, log=True, plot=False, copy=True)  
+filtered_data = sc.pp.recipe_zheng17(adata, log=True, copy=True) 
 #read in data and filtered the data
+
 
 #STEP 1
 # PCA plot unfiltered data
@@ -36,25 +37,28 @@ sc.tl.tsne(filtered_data)
 t_test = sc.tl.rank_genes_groups(filtered_data, 'leiden', method='t-test', copy=True)
 logreg = sc.tl.rank_genes_groups(filtered_data, 'leiden', method='logreg', copy=True)
 
-genes = []
-n = len(logreg.uns["leiden_colors"])
-for i in range(n):
-    names = logreg.uns['rank_genes_groups']["names"][str(i)]
-    scores = logreg.uns['rank_genes_groups']["scores"][str(i)]
-    genes.append(names[np.argmax(scores)])
+# genes = []
+# n = len(logreg.uns["leiden_colors"])
+# for i in range(n):
+#     names = logreg.uns['rank_genes_groups']["names"][str(i)]
+#     scores = logreg.uns['rank_genes_groups']["scores"][str(i)]
+#     genes.append(names[np.argmax(scores)])
 # plot the tsne with the genes for each gene, should be ~9-10
-sc.pl.tsne(logreg, color=genes, show=False, save="logreg_tsne_by_genes.png")
+# sc.pl.tsne(logreg, color=genes, show=False, save="logreg_tsne_by_genes.png")
+fig, ax = plt.subplots()
+sc.pl.rank_genes_groups(logreg, show=False, ax=ax)
+fig.savefig('logreg_rank_genes.png')
 
-logreg.uns['rank_genes_groups']["names"]
-logreg.uns['rank_genes_groups']["scores"]
+
+# logreg.uns['rank_genes_groups']["names"]
+# logreg.uns['rank_genes_groups']["scores"]
 #sc.pl.rank_genes_groups(t_test, n_genes=25, sharey=False, save='t_test_rank_genes_groups.png')
-#sc.pl.rank_genes_groups(logreg, n_genes=25, sharey=False, save='logreg_rank_genes_groups.png')
 #sc.pl.rank_genes_groups_matrixplot(logreg, save='logreg_matrix.png')
-celltypes = ["Oligodendrocytes-2", "Astrocytes-14", "Pericytes-25"] 
+# celltypes = ["Oligodendrocytes-2", "Astrocytes-14", "Pericytes-25"]
 
 #one plot, different tsne's to show where each gene is enriched
-sc.pl.umap(filtered_data, title="UMAP", color="celltypes", show=False)
-plt.show()
+# sc.pl.umap(filtered_data, title="UMAP", color="celltypes", show=False)
+# plt.show()
 
 #AQP4 in astrocytes28
 #APOLD1 in endothelial cells29

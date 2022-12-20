@@ -94,7 +94,7 @@ So, the longest alingment would be 105830 bases long.
 
 I made a directory using `mkdir dnadiff_outputs` and moved all files starting with "out" (which are the outputs of dnadiff) into the directory using `mv out.* dnadiff_outputs` for organization purposes.
 
-Then I checked the out.reports file since it was the most general output of dnadiff, and found that 710 bases (0.3028%) of the assembly (query) was unaligned, which refers to insertions and deletions.
+Then I checked the out.reports file since it was the most general output of dnadiff, and found that there was one insertion that is 712 bases in length and five deletions 51 bases in total length, but an average insertion length of 10.2 bases.
 
 ######Question 4. Decoding the insertion
 

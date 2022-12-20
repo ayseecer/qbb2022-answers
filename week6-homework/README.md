@@ -1,7 +1,7 @@
 Part 1:
 
 Q1: What percentage of reads are valid interactions (duplicates do not count as valid)?
--> 92% for dCTCF and 88% for ddCTCF.
+answer: based on the "plotHiCFragment" figures 37.8% for dCTCF and 36.6% for ddCTCF.
 
 Q2: What constitutes the majority of invalid 3C pairs? What does it actually mean (you may need to dig into the HiC-Pro manual)?
 -> Dangling-end pairs (62.9%). It reveals a problem during the digestion, fill-in or ligation steps.

@@ -1,14 +1,10 @@
 ## Week 6 -- 10 points possible
 
-0 + 0 + 1 + 1 + 1 + 1 + 1 + 1 + 0 + 0 + 1 + 0.5 + 0 = 7.5 of 10 points possible
+1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 0 + 0 + 1 + 0.5 + 0 = 9.5 of 10 points possible
 
 1. Given data question: What percentage of reads are valid interactions?
 
-I didn't see an answer to this question
-
 2. Given data question: What constitutes the majority of invalid 3C pairs?/What does it mean?
-
-I didn't see an answer to this question
 
 3. Script set up to (0.5 pts each)
 

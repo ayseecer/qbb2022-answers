@@ -1,6 +1,6 @@
 # Week 1 Genome Assembly -- Feedback
 
-1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1  = 9.67 points out of 10 possible points
+1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1  = 10 points out of 10 possible points
 
 1. Question 1.1, 1.4 how many reads (0.5 pts each)
 

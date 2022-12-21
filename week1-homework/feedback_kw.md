@@ -1,6 +1,6 @@
 # Week 1 Genome Assembly -- Feedback
 
-1 + 1 + 1 + 1 + 1 + 1 + 1 + 0.67 + 1 + 1  = 9.67 points out of 10 possible points
+1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1  = 9.67 points out of 10 possible points
 
 1. Question 1.1, 1.4 how many reads (0.5 pts each)
 
@@ -36,7 +36,7 @@
 
   * average identity --> +0.33
   * length of longest alignment --> + 0.33
-  * how many insertions and deletions in assembly --> +0, the `out.report` from dna_diff provides the number of insertions and deletions in the same table you got the average identity from
+  * how many insertions and deletions in assembly --> **regrade**, +0.33
 
 9. decoding the insertion (0.5 pts each, 0.25 for answer and 0.25 for code)
 

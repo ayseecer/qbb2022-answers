@@ -1,6 +1,6 @@
 ## Week 13
 
-1 + 1 + 1 + 1 + 1 + 0.9 + 1 + 1 + 0 + 0 = 7.9 out of 10 points possible
+1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = 10 out of 10 points possible
 
 1. Wright Fisher simulation is a function
 
@@ -13,8 +13,6 @@
 5. simulation returns a list of allele frequencies at each generation
 
 6. line plot generation number x-axis and allele frequency y-axis with notated starting allele frequency and pop size as well as labeled axes; 0.5 pts for notes/labels
-
-  * don't see the allele freq and pop size notated on the plot -> -0.1
 
 7. time to fixation histogram for starting allele freq of 0.5 and pop size of 100 with at least 1000 independent runs
 
